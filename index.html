@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio Relógio Monte Sinai! ⌚</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            max-width: 150px;
+            margin-bottom: 10px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .number {
+            padding: 10px;
+            background: #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .sold {
+            background: red;
+            color: white;
+            font-weight: bold;
+        }
+        .pix-container {
+            margin-top: 20px;
+            padding: 10px;
+            background: #eee;
+            border-radius: 10px;
+        }
+        img.qrcode {
+            max-width: 100px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="MonteSinai.jpeg" alt="Logo" class="logo">
+        <h1>Sorteio Relógio Monte Sinai! ⌚</h1>
+        <p>AMAZIFIT GTS 2 mini A2018</p>
+        <p>Escolha seu número e contribua!</p>
+        
+        <div class="grid" id="board"></div>
+        
+        <div class="pix-container">
+            <p>Apenas R$5,00 por número! Sorteio imperdível!</p>
+            <p>Chave PIX:</p>
+            <p>montesinai.jdfernanda@gmail.com</p>
+            <img src="PIX.jpeg" alt="QR Code PIX" class="qrcode">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const board = document.getElementById("board");
+            const soldNumbers = [3, 5, 12, 25, 27, 33, 38, 49, 57, 61, 68, 79, 85, 90, 95, 97, 111, 114, 126, 137, 149, 163, 169, 178, 195, 199, 200];
+            
+            for (let i = 1; i <= 200; i++) {
+                let numDiv = document.createElement("div");
+                numDiv.className = "number";
+                numDiv.textContent = i;
+                
+                if (soldNumbers.includes(i)) {
+                    numDiv.classList.add("sold");
+                }
+                
+                board.appendChild(numDiv);
+            }
+        });
+    </script>
+</body>
+</html>
+
