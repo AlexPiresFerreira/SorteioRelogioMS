@@ -61,6 +61,7 @@
         <p>AMAZIFIT GTS 2 mini A2018</p>
         <p>Escolha seu número e contribua!</p>
 	<h2>Números vendidos: <span id="contador">0</span> / 250</h2>
+	<h2>Valor para o som da igreja: R$ <span id="valorDoado">0,00</span></h2>
         
         <div class="grid" id="board"></div>
         
@@ -90,6 +91,13 @@
 		    	160, 202
 			];
 	    document.getElementById("contador").innerText = soldNumbers.length;
+
+	    const totalVendidos = soldNumbers.length;
+	    document.getElementById("contador").innerText = totalVendidos;
+			
+	    // Verifica quantos passam de 200 e calcula o valor a ser doado
+	    const numerosAcimaDe200 = totalVendidos > 200 ? totalVendidos - 200 : 0;
+	    const valorParaSom = numerosAcimaDe200 * 5;
 		
             for (let i = 1; i <= 250; i++) {
                 let numDiv = document.createElement("div");
