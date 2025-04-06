@@ -51,64 +51,94 @@
             max-width: 100px;
             margin-top: 10px;
         }
+        .winners {
+            margin-top: 30px;
+            text-align: left;
+        }
+        .winners h3 {
+            text-align: center;
+            color: green;
+        }
+        .winners ul {
+            list-style: none;
+            padding: 0;
+        }
+        .winners li {
+            margin-bottom: 5px;
+        }
+		.winner {
+			background: #FFD700;
+			color: black;
+			font-weight: bold;
+		}
+		.winner {
+			background: #FFD700;
+			color: black;
+			font-weight: bold;
+		}
+
     </style>
 </head>
 <body>
     <div class="container">
         <img src="MonteSinai.jpeg" alt="Logo" class="logo">
         <h1>Sorteio Relógio Monte Sinai! ⌚</h1>
-        <h2>Os números em vermelho representam os que já foram comprados.</h2>
         <p>AMAZIFIT GTS 2 mini A2018</p>
         <p>Escolha seu número e contribua!</p>
-	<h2>Números vendidos: <span id="contador">0</span> / 300</h2>
-        
+		
+		<div class="winners">
+            <h3>🎉 Vencedores do Sorteio 🎉</h3>
+            <ul>
+                <li>🧁 Voucher R$20,00 - Bela Açuca: <strong>Ana Célia Amorim (Nº 93)</strong></li>
+                <li>🍰 Bolo: <strong>Jacqueline Viracopos (Nº 32)</strong></li>
+                <li>🎂 Bolo Bela Açuca (Doação Max): <strong>Cezar (Nº 71)</strong></li>
+				<li>⌚ Relógio AMAZFIT GTS 2 Mini A2018: <strong>Emily Mendes (Nº 206)</strong></li>
+            </ul>
+           
+        </div>
+
         <div class="grid" id="board"></div>
-        
+
         <div class="pix-container">
             <p>Apenas R$5,00 por número! Sorteio imperdível!</p>
             <p>Chave PIX:</p>
             <p>montesinai.jdfernanda@gmail.com</p>
             <img src="PIX.jpeg" alt="QR Code PIX" class="qrcode">
         </div>
+        
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const board = document.getElementById("board");
-            const soldNumbers = [
-			3, 5, 12, 25, 27, 33, 38, 49, 57, 61, 68, 79, 85, 90, 95, 97, 111, 114, 126, 137,
-			149, 163, 169, 178, 195, 199, 200, 15, 21, 26, 28, 50, 51, 52, 53, 54, 55, 22, 17,
-			92,99, 106, 113, 120, 127, 134, 141, 148, 155, 32, 73, 82, 83, 122, 128, 8, 44,
-			24, 69, 37, 136, 1, 2, 4, 6, 7, 198, 56, 63, 70, 77, 84, 91, 98, 105, 112, 119, 
-			133, 140, 147, 154, 161, 168, 175, 182, 189, 196, 144, 123, 96, 197, 100, 101, 102,
-			103, 104, 107, 108, 109, 110, 150, 9, 10, 11, 13, 14, 16, 18, 19, 20, 23, 43, 45,
-			46, 47, 48, 60, 41, 125, 29, 194, 42, 30, 87, 153, 71, 171, 88, 35, 40, 75, 130, 185,
-			59, 159, 31, 80, 34, 36, 39, 62, 72, 76, 151, 58, 129, 89, 93, 94, 191, 192, 193, 74,
-			78, 86, 180, 81, 67, 142, 66, 173, 64, 65, 186, 132, 238, 143, 157, 190, 219, 244,
-			158, 212, 184, 214, 188, 121, 204, 220, 117, 118, 124, 131, 234, 250, 239, 241, 222, 115,
-			116, 135, 156, 162, 209, 210, 221, 223, 138, 145, 152, 177, 165, 235, 215, 213, 167, 
-		    	160, 202, 174, 237, 139, 206, 249, 164, 181, 232, 207, 242, 146, 166, 170, 172, 211, 
-		        218, 225, 227, 245, 248, 176, 179, 183, 187, 201, 203, 205, 208, 216, 217, 224, 226,
-		        228, 229, 230, 231, 233, 236, 240, 243, 279, 275, 293, 300, 246, 285, 290, 292, 294,
-		        280, 255, 295, 274, 277, 289, 299, 271, 270, 291, 288, 251, 269, 272, 273, 252, 259, 
-			266, 296, 297, 298, 287, 260, 268, 286, 276, 254, 284, 281, 282, 283, 247, 253, 256, 
-		    	257, 278, 267, 258, 265, 261, 264, 263, 262
-			];
-	    document.getElementById("contador").innerText = soldNumbers.length;
-		
+            const soldNumbers = Array.from({ length: 300 }, (_, i) => i + 1);
+
+			const winningNumbers = [32, 71, 93, 206]; // Números dos ganhadores
+	
+
             for (let i = 1; i <= 300; i++) {
                 let numDiv = document.createElement("div");
                 numDiv.className = "number";
                 numDiv.textContent = i;
-                
-                if (soldNumbers.includes(i)) {
-                    numDiv.classList.add("sold");
-                }
-                
+
+               if (winningNumbers.includes(i)) {
+					numDiv.classList.add("winner");
+			   } else if (soldNumbers.includes(i)) {
+					numDiv.classList.add("sold");
+			   }
+
                 board.appendChild(numDiv);
             }
+			
+			confetti({
+            particleCount: 200,
+            spread: 70,
+            origin: { y: 0.6 }
+			});
         });
     </script>
+	
+	<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+	
 </body>
 </html>
-
